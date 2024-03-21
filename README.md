@@ -1,43 +1,37 @@
-### Как запустить проект:
+## :exclamation:  Это промежуточная стадия разработки проекта https://github.com/IvanKiss42/kittygram_final  
 
-Клонировать репозиторий и перейти в него в командной строке:
+:smile_cat: Kittygram - блог о домашних питомцах всех расцветок и нравов. Пользователи могут создавать страницы своих питомцев с текстовым описанием, изображением и списком достижений.  
 
-```
-git clone https://github.com/yandex-praktikum/kittygram2.git
-```
+:computer: Стек технологий: Python, Django, REST API, JWT  
 
-```
-cd kittygram2
-```
+Данная версия предполагает только локальное использования и локальную проверку работы Django моделей, API и JWT токена для этого:  
 
-Cоздать и активировать виртуальное окружение:
+Cоздайте и активируйте виртуальное окружение:
 
-```
-python3 -m venv env
+```bash
+python -m venv venv
+source venv/Scripts/activate
 ```
 
-```
-source env/bin/activate
-```
+Установите зависимости из файла requirements.txt:
 
-```
-python3 -m pip install --upgrade pip
-```
-
-Установить зависимости из файла requirements.txt:
-
-```
+```bash
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Выполнить миграции:
+Выполните миграции:
 
-```
-python3 manage.py migrate
+```bash
+python manage.py migrate
 ```
 
 Запустить проект:
+```bash
+python manage.py runserver
+```
 
-```
-python3 manage.py runserver
-```
+После этого будет доступен эндпоинт http://127.0.0.1:8000/auth/users/, где можно зарегистрироваться в базе проекта через POST запрос в формате json передав в словаре "username" и "password", например:  
+["username": Name, "password": 1q2w3e4r5t]  
+Затем для получения JWT токена отправьте запрос POST http://127.0.0.1:8000/auth/jwt/create/ передав "username" и "password", ответом будет сам токен доступа и токен обновления JWT токена.  
+Использование токена в headers сообщений позволит вам полноценно взаимодействовать с базой данных.
